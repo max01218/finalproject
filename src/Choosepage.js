@@ -54,23 +54,33 @@ export default function Choose() {
                 </Avatar>
                 <WhiteTextTypography component="h1" variant="h5">
                     Where You Been
-                    </WhiteTextTypography>
+                </WhiteTextTypography>
+
                 <form className={classes.form} noValidate>
-                    {Show()}
+
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        href="/input"
                     >
-                        Submit
+                        輸入足跡
+                        </Button>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        href="#"
+                    >
+                        顯示足跡
                         </Button>
                 </form>
             </div>
-            <Box mt={2}>
-                <Copyright />
-            </Box>
+
         </Container>
     );
 }

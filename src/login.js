@@ -16,7 +16,8 @@ import Container from '@material-ui/core/Container';
 
 const WhiteTextTypography = withStyles({
   root: {
-    color: "white"
+    color: "white",
+    marginTop: 50
   }
 })(Typography);
 
@@ -46,7 +47,7 @@ const WhiteFormControlLabel = withStyles({
 })(FormControlLabel);
 
 const DLockOutlinedIcon = withStyles({
-  root:{
+  root: {
     color: 'white'
   },
 })(LockOutlinedIcon)
@@ -72,12 +73,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(5),
     backgroundColor: theme.palette.success.light,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(20),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -123,7 +124,7 @@ export default function SignIn() {
             autoComplete="current-password"
           />
           <WhiteFormControlLabel
-            control={<WhiteCheckbox value="remember"/>}
+            control={<WhiteCheckbox value="remember" />}
             label="Remember me"
           />
           <Button
@@ -132,6 +133,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            href="/input"
           >
             Login
           </Button>

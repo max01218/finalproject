@@ -15,103 +15,90 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 
 const WhiteTextTypography = withStyles({
-    root: {
-      color: "white"
-    }
-  })(Typography);
-  
-  const WhiteCheckbox = withStyles({
-    root: {
-      color: "white"
-    }
-  })(Checkbox);
-  
-  const WhiteTextField = withStyles({
-    root: {
-      '& .MuiInputBase-root': {
-        color: 'white'
-      },
-      '& .MuiInputLabel-root': {
-        color: 'white'
-      },
-    },
-  })(TextField);
-  
-  const WhiteFormControlLabel = withStyles({
-    root: {
-      '& .MuiFormControlLabel-label': {
-        color: 'white'
-      },
-    },
-  })(FormControlLabel);
-  
-  const DLockOutlinedIcon = withStyles({
-    root:{
+  root: {
+    color: "white"
+  }
+})(Typography);
+
+const WhiteCheckbox = withStyles({
+  root: {
+    color: "white"
+  }
+})(Checkbox);
+
+const WhiteTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
       color: 'white'
     },
-  })(LockOutlinedIcon)  
+    '& .MuiInputLabel-root': {
+      color: 'white'
+    },
+  },
+})(TextField);
 
-  function Copyright() {
-    return (
-      <WhiteTextTypography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="red" href="https://material-ui.com/">
-          Your Website
+const WhiteFormControlLabel = withStyles({
+  root: {
+    '& .MuiFormControlLabel-label': {
+      color: 'white'
+    },
+  },
+})(FormControlLabel);
+
+const DLockOutlinedIcon = withStyles({
+  root: {
+    color: 'white'
+  },
+})(LockOutlinedIcon)
+
+function Copyright() {
+  return (
+    <WhiteTextTypography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="red" href="https://material-ui.com/">
+        Your Website
         </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </WhiteTextTypography>
-    );
-  }
+      {new Date().getFullYear()}
+      {'.'}
+    </WhiteTextTypography>
+  );
+}
 
-  const useStyles = makeStyles((theme) => ({
-    paper: {
-      marginTop: theme.spacing(0),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.success.light,
-    },
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-  }));
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(0),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.success.light,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 function show() {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <WhiteTextField
-          autoComplete="fname"
-          name="firstName"
+          autoComplete="name"
+          name="Name"
           color="secondary"
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          id="firstName"
-          label="First Name"
+          id="Name"
+          label="Name"
           autoFocus
-        />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <WhiteTextField
-          color="secondary"
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          id="lastName"
-          label="Last Name"
-          name="lastName"
-          autoComplete="lname"
         />
       </Grid>
       <Grid item xs={12}>
