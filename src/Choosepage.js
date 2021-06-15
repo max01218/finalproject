@@ -2,7 +2,6 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import WhiteTextTypography from './WhiteTextTypography';
@@ -52,7 +51,7 @@ export default function Choose() {
                         href="/input"
                     >
                         輸入足跡
-                        </Button>
+                    </Button>
                     <Button
                         type="submit"
                         fullWidth
@@ -62,7 +61,7 @@ export default function Choose() {
                         href="#"
                     >
                         顯示足跡
-                        </Button>
+                    </Button>
                 </form>
             </div>
 
