@@ -29,7 +29,7 @@ function App() {
           {/* <Route exact path="/">
               <Login />
             </Route> */}
-          <Route path="/main">
+          <Route path="/">
             <div style={sectionStyle}>
               <AppAppBar />
               <ProductHero />
