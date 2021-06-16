@@ -46,7 +46,7 @@ function ProductHero(props) {
                 <b>做好足跡登記</b>
             </Typography>
             <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
-                努力做好每一天的防疫，為了每個人的健康，更為了整個大同社會!
+                努力做好每一天的防疫，為了每個人的健康!
             </Typography>
             <Button
                 color="primary"

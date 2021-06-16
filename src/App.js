@@ -5,7 +5,8 @@ import ProductHero from './backgroung'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Input from "./Input";
 import SignIn from './login';
-import Choose from './Choosepage'
+import Choose from './Choosepage';
+import Show from './showpage';
 // import CheckBox from './components/checkbox';
 import SignUpSide from './SignUp';
 // import ForgetPassword from './components/forgotpassword';
@@ -26,15 +27,10 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          {/* <Route exact path="/">
-              <Login />
-            </Route> */}
-          <Route path="/">
-            <div style={sectionStyle}>
-              <AppAppBar />
-              <ProductHero />
-            </div>
-          </Route>
+          {<Route exact path="/">
+            <AppAppBar />
+            <ProductHero />
+          </Route>}
           <Route path="/login">
             <div style={sectionStyle}>
               <Head />
@@ -57,6 +53,12 @@ function App() {
             <div style={sectionStyle}>
               <Head />
               <Choose />
+            </div>
+          </Route>
+          <Route path="/show">
+            <div style={sectionStyle}>
+              <Head />
+              <Show />
             </div>
           </Route>
           {/* <Route path="/forgetpassword">

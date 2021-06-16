@@ -58,7 +58,7 @@ export default function Choose() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        href="#"
+                        href="/show"
                     >
                         顯示足跡
                     </Button>
