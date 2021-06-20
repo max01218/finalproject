@@ -20,7 +20,7 @@ const App = () => {
   const [passwordError, setPasswordError] = useState('');
 
   const BackToHomepage = () => {
-    window.location.replace("https://finaltest111.herokuapp.com/")
+    window.location.replace("https://morning-brook-45158.herokuapp.com/")
   }
 
   const clearInputs = () => {
