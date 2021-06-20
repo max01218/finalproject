@@ -36,7 +36,7 @@ const SignIn = (props) => {
       {
         user ? (
           //window.location.replace("https://finaltest111.herokuapp.com/input")
-          window.location.replace("http://localhost:3000/choose")
+          window.location.replace("https://morning-brook-45158.herokuapp.com/choose")
         ) : (
           <section className="login">
             <nav>
