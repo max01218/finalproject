@@ -1,68 +1,65 @@
-import React from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+import React from "react";
+import { db } from './fire';
+import { useState } from "react";
+import Link from '@material-ui/core/Link';
+import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/core/styles';
-import { LocationCity } from '@material-ui/icons';
-import firebase from 'firebase';
-import config from './config/config';
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-        margin: theme.spacing(10),
-        minWidth: 300,
+const WelcomeLink = withStyles({
+    root: {
+        color: 'white',
+        fontWeight: 'bolder',
+        fontSize: '30px'
     },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
+})(Link)
+const ColorLink = withStyles({
+    root: {
+        color: 'yellow',
+        fontSize: '19px',
     },
-}));
-export default function Selectitem() {
-    const classes = useStyles();
-    const [age, setAge] = React.useState('');
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
+})(Link)
+export default function Selectpage(props) {
+    const [Cities, setCitys] = useState([]);
+    const { handleLogout, user } = props;
+    function getCity() {
+        const { user } = props;
+        db.collection('place').where('user', '==', user.email).onSnapshot(function (querySnapshot) {
+            setCitys(
+                querySnapshot.docs.map((doc) => ({
+                    User: doc.data.user,
+                    City: doc.data().City,
+                    Shop: doc.data().Place_name,
+                    Dist: doc.data().Dist,
+                    Date_time: doc.data().Date_time,
+                }))
+            )
+        })
+    }
     return (
         <div>
-            <FormControl className={classes.formControl}>
-                <InputLabel id="city">city</InputLabel>
-                <Select
-                    labelId="city"
-                    id="city"
-                    value={LocationCity}
-                    onChange={handleChange}
-                >
-                    <MenuItem value={LocationCity}>Taipai</MenuItem>
-                    <MenuItem value={LocationCity}>Taichung</MenuItem>
-                    <MenuItem value={LocationCity}>Kaohsiung</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-                <InputLabel id="area">area</InputLabel>
-                <Select
-                    labelId="area"
-                    id="area"
-                    value={age}
-                    onChange={handleChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-                <InputLabel id="shop">shop</InputLabel>
-                <Select
-                    labelId="shop"
-                    id="shop"
-                    value={age}
-                    onChange={handleChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
+            {user ? (
+                <section className={"show"}>
+                    {getCity()}
+                    <nav>
+                        <WelcomeLink href="/" variant="body2">Welcome</WelcomeLink>
+                        <button onClick={handleLogout}>Logout</button>
+                    </nav>
+                    <div>
+                        <FormControl className={"showContainer"}>
+                            <h1>你曾經去過的地方</h1>
+                            {Cities.map((place) => (
+                                <h2> {place.City} {place.Dist} {place.Shop} {place.Date_time} </h2>
+                            ))}
+                        </FormControl>
+                    </div>
+                </section>) : (
+                <section className='change'>
+                    <div className='changeToLogin'>
+                        <ColorLink href="/login" variant="body2">
+                            {"Please log in"}
+                        </ColorLink>
+                    </div>
+                </section>
+            )}
         </div>
-    );
+    )
 }

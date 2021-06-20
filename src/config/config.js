@@ -1,12 +1,17 @@
-const config = {
-    apiKey: "AIzaSyCM4EMK405QUGYGDqJKsdM7ejKFIkNOMHM",
-    authDomain: "finalproject-31aaf.firebaseapp.com",
-    databaseURL: "https://finalproject-31aaf-default-rtdb.firebaseio.com",
-    projectId: "finalproject-31aaf",
-    storageBucket: "finalproject-31aaf.appspot.com",
-    messagingSenderId: "512524970440",
-    appId: "1:512524970440:web:b904f64faccf531179f8fd",
-    measurementId: "G-G1N74XS3L0"
-};
+//import firebase from 'firebase';
 
-export default config;
+// Your web app's Firebase configuration
+//var firebaseConfig = {
+  //  apiKey: "AIzaSyDBdH6lvy1G17lk0MNsgibJZ3M4hTrtiMY",
+    //authDomain: "final-73099.firebaseapp.com",
+  //  projectId: "final-73099",
+  //  storageBucket: "final-73099.appspot.com",
+  //  messagingSenderId: "1035242910845",
+  //  appId: "1:1035242910845:web:c2bac46ec6a1b165856d14"
+//};
+// Initialize Firebase
+//const fire = firebase.initializeApp(firebaseConfig);
+//const db = firebase.firestore();
+///
+//export default fire;
+//export { db };

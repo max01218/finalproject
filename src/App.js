@@ -1,65 +1,136 @@
 import './App.css';
-import AppAppBar from './headpage'
-import Head from './head'
-import ProductHero from './backgroung'
+import { useState, useEffect } from 'react';
+import fire from './fire';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Input from "./Input";
-import SignIn from './login';
-import Choose from './Choosepage';
-import Show from './showpage';
+import Input from "./components/Input";
+import SignIn from './components/login';
 // import CheckBox from './components/checkbox';
-import SignUpSide from './SignUp';
+import SignUp from './components/SignUp';
+import AppAppBar from './headpage'
+import Main from './backgroung'
+import Choose from './Choosepage';
+import Select from './Select';
 // import ForgetPassword from './components/forgotpassword';
-//import Background from './image/64495434_p0.jpg';
-var sectionStyle = {
-  backgroundPosition: '75% 25%',
-  maxWidth: '100%',
-  height: '100vh',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
 
-  // makesure here is String确保这里是一个字符串，以下是es6写法
-  backgroundImage: 'url(./COVID-19.jpg)'
-};
+const App = () => {
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
-function App() {
+  const BackToHomepage = () => {
+    window.location.replace("https://finaltest111.herokuapp.com/")
+  }
+
+  const clearInputs = () => {
+    setEmail('');
+    setPassword('');
+  }
+  const clearErrors = () => {
+    setEmailError('');
+    setPasswordError('');
+  }
+
+  const handleLogin = () => {
+    clearErrors();
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(err => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+          case "auth/wrong-password":
+            setPasswordError(err.message);
+            break;
+        }
+      });
+  };
+
+  const handleSignup = () => {
+    clearErrors();
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(err => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            setEmailError(err.message);
+            break;
+          case "auth/weak-password":
+            setPasswordError(err.message);
+            break;
+        }
+      });
+  };
+
+  const handleLogout = () => {
+    fire.auth().signOut();
+    //window.location.replace("https://finaltest111.herokuapp.com/login")
+    window.location.replace("http://localhost:3000/login")
+  };
+
+  const authListener = () => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        clearInputs();
+        setUser(user);
+      } else {
+        setUser("");
+      }
+    });
+  };
+
+  useEffect(() => {
+    authListener();
+  }, []);
   return (
     <div className="App">
       <Router>
         <Switch>
           {<Route exact path="/">
             <AppAppBar />
-            <ProductHero />
+            <Main />
           </Route>}
           <Route path="/login">
-            <div style={sectionStyle}>
-              <Head />
-              <SignIn />
-            </div>
+            <SignIn
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              emailError={emailError}
+              passwordError={passwordError}
+              user={user}
+              BackToHomepage={BackToHomepage}
+            />
           </Route>
           <Route path="/input">
-            <div style={sectionStyle}>
-              <Head />
-              <Input />
-            </div>
+            <Input handleLogout={handleLogout} user={user} />
           </Route>
           <Route path="/signup">
-            <div style={sectionStyle}>
-              <Head />
-              <SignUpSide />
-            </div>
+            <SignUp
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              handleSignup={handleSignup}
+              emailError={emailError}
+              passwordError={passwordError}
+              user={user}
+              BackToHomepage={BackToHomepage}
+            />
           </Route>
-          <Route path="/choose">
-            <div style={sectionStyle}>
-              <Head />
-              <Choose />
-            </div>
+          <Route path="/choose" >
+            <Choose user={user} />
           </Route>
           <Route path="/show">
-            <div style={sectionStyle}>
-              <Head />
-              <Show />
-            </div>
+            <Select handleLogout={handleLogout} user={user} />
           </Route>
           {/* <Route path="/forgetpassword">
               <ForgetPassword />
