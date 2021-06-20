@@ -14,7 +14,7 @@ function Copyright() {
   return (
     <WhiteTextTypography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <ColorLink href="http://localhost:3000/">
+      <ColorLink href="https://morning-brook-45158.herokuapp.com/">
         Your Website
       </ColorLink>{' '}
       {new Date().getFullYear()}
@@ -34,7 +34,7 @@ const SignUp = (props) => {
   return (
     <div>
       {user ? (
-        window.location.replace("https://finaltest111.herokuapp.com/input")
+        window.location.replace("https://morning-brook-45158.herokuapp.com/input")
         // window.location.replace("http://localhost:3000/input")
       ) : (
         <section className="signup">
