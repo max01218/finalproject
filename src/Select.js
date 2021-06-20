@@ -19,7 +19,6 @@ const ColorLink = withStyles({
 })(Link)
 export default function Selectpage(props) {
     const [Cities, setCitys] = useState([]);
-    const { handleLogout, user } = props;
     function getCity() {
         const { user } = props;
         db.collection('place').where('user', '==', user.email).onSnapshot(function (querySnapshot) {
@@ -34,6 +33,7 @@ export default function Selectpage(props) {
             )
         })
     }
+    const { handleLogout, user } = props;
     return (
         <div>
             {user ? (

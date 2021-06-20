@@ -41,7 +41,7 @@ function ProductHero(props) {
                     size="large"
                     className={classes.button}
                     component="a"
-                    href="/login"
+                    href="https://morning-brook-45158.herokuapp.com/login"
                 >
                     登入
                 </Button>
